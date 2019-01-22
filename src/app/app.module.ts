@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -8,7 +9,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AngularFireModule } from 'angularfire2';
 import { ChatPage } from '../pages/chat/chat';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 var config = {
   apiKey: "AIzaSyCE30U69PzmAgsu9_vlCtqYQ5CFN8O0prk",
@@ -28,9 +28,7 @@ var config = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(config),
-    AngularFireDatabaseModule
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

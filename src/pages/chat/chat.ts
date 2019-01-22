@@ -1,4 +1,4 @@
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -22,22 +22,20 @@ export class ChatPage {
   _chatSubscription;
   messages: object[] = [];
 
-  constructor(public db: AngularFireDatabase,
+  constructor(public db: AngularFirestore,
     public navCtrl: NavController, public navParams: NavParams) {
       this.username = this.navParams.get('username');
-      this._chatSubscription = this.db.list('/chat').subscribe( data => {
+      this._chatSubscription = this.db.collection('/chat').add( data => { //subscribe
         this.messages = data;
       });
     }
 
     sendMessage() {
-      this.db.list('/chat').push({
+      this.db.collection('/chat').add({ //push
         username: this.username,
         message: this.message
       }).then( () => {
         // message is sent
-      }).catch( () => {
-        // some error. maybe firebase is unreachable
       });
       this.message = '';
     }
