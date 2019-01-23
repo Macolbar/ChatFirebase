@@ -41,7 +41,7 @@ export class ChatPage {
     }
 
     ionViewDidLoad() {
-      this.db.list('/chat').push({
+      this.db.collection('/chat').add({ //push
         specialMessage: true,
         message: `${this.username} has joined the room`
       });
@@ -49,7 +49,7 @@ export class ChatPage {
 
     ionViewWillLeave(){
       this._chatSubscription.unsubscribe();
-      this.db.list('/chat').push({
+      this.db.collection('/chat').add({ //push
         specialMessage: true,
         message: `${this.username} has left the room`
       });
